@@ -27,7 +27,7 @@ const NavDrawer: React.FC = () => {
         </ListItemButton>
 
         {/* Contact Us Link */}
-        <ListItemButton component={Link} to="/contact">
+        <ListItemButton component={Link} to="/contact-us">
           <ListItemIcon>
             <ContactMailIcon />
           </ListItemIcon>
