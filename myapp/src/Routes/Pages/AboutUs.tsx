@@ -10,11 +10,17 @@ const team = [
     imageUrl: 'https://example.com/john.jpg'
   },
   {
-    name: 'Jane Smith',
+    name: 'Connor Johnson',
     role: 'CTO',
-    bio: 'Jane leads our tech team and has a background in software engineering.',
+    bio: 'Connor leads our tech team and has a background in software engineering and wealth of other skill regarding web developement.',
     imageUrl: 'https://example.com/jane.jpg'
   },
+  {
+    name: 'Benjamin Bell',
+    role: 'Software Engineer',
+    bio: 'Ben likes to suck massives penises.',
+    imageUrl: 'https://example.com/john.jpg'
+  }
   // Add more team members as needed
 ];
 
