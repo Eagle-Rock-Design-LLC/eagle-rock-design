@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "eagle-rock-design"
+location: "us-west2"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "eagle-rock-design-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
