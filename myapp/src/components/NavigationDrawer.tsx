@@ -1,8 +1,9 @@
 import React from "react";
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Box } from "@mui/material";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
 import { Home, Work, PhotoLibrary, ContactMail } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
-import { styled } from "@mui/material/styles";
+
+const drawerWidth = 240;
 
 const navItems = [
   { text: "Home", icon: <Home />, link: "/" },
@@ -11,33 +12,31 @@ const navItems = [
   { text: "Contact Us", icon: <ContactMail />, link: "/contactus" },
 ];
 
-// Styled Link for Material-UI with RouterLink
-const StyledLink = styled(RouterLink)(({ theme }) => ({
-  color: "inherit",
-  textDecoration: "none",
-  display: "flex",
-  width: "100%",
-  "&:hover": {
-    backgroundColor: theme.palette.action.hover,
-  },
-}));
-
-const NavigationDrawer = () => (
-  <Drawer variant="permanent" sx={{ width: 240, bgcolor: "#1976d2", color: "#fff" }}>
+const NavigationDrawer = ({ open, toggleDrawer }: { open: boolean; toggleDrawer: () => void }) => (
+  <Drawer
+    variant="temporary"
+    open={open}
+    onClose={toggleDrawer}
+    sx={{
+      "& .MuiDrawer-paper": { width: drawerWidth },
+    }}
+  >
     <Toolbar>
-      <Box sx={{ textAlign: "center", width: "100%" }}>
-        <Typography variant="h6" sx={{ fontWeight: "bold", color: "#fff" }}>
-          Eagle Rock Design
-        </Typography>
-      </Box>
+      <Typography variant="h6">Eagle Rock Design</Typography>
     </Toolbar>
     <List>
       {navItems.map((item) => (
-        <ListItem key={item.text} disablePadding>
-          <StyledLink to={item.link}>
-            <ListItemIcon sx={{ color: "#ff9800" }}>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-          </StyledLink>
+        <ListItem
+          component={RouterLink as React.ElementType} // Fix type error here
+          to={item.link}
+          key={item.text}
+          onClick={toggleDrawer} // Close drawer when clicking a menu item
+          sx={{
+            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
+          }}
+        >
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.text} />
         </ListItem>
       ))}
     </List>
