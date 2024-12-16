@@ -1,24 +1,34 @@
 import React from "react";
-import { Container, Card, CardContent, Typography, Grid } from "@mui/material";
+import { Container, Grid, Card, CardContent, Typography, CardActions, Button } from "@mui/material";
 
 const services = [
-  { title: "Website Design", description: "Custom website creation tailored to your needs." },
-  { title: "SEO Optimization", description: "Improve search rankings and online visibility." },
+  { title: "Website Design", description: "Beautiful and responsive websites for your business." },
+  { title: "SEO Services", description: "Boost your website's visibility with our SEO strategies." },
+  { title: "E-Commerce", description: "Start selling online with our secure and scalable stores." },
 ];
 
 const Services = () => (
-  <Container>
-    <Typography variant="h3" gutterBottom>
+  <Container sx={{ py: 6 }}>
+    <Typography variant="h3" color="primary" textAlign="center" gutterBottom>
       Our Services
     </Typography>
     <Grid container spacing={4}>
-      {services.map((service) => (
-        <Grid item xs={12} md={6} key={service.title}>
-          <Card>
+      {services.map((service, index) => (
+        <Grid item xs={12} md={4} key={index}>
+          <Card sx={{ boxShadow: 3 }}>
             <CardContent>
-              <Typography variant="h5">{service.title}</Typography>
-              <Typography variant="body2">{service.description}</Typography>
+              <Typography variant="h5" gutterBottom>
+                {service.title}
+              </Typography>
+              <Typography variant="body1" color="textSecondary">
+                {service.description}
+              </Typography>
             </CardContent>
+            <CardActions>
+              <Button size="small" color="primary">
+                Learn More
+              </Button>
+            </CardActions>
           </Card>
         </Grid>
       ))}

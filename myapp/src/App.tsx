@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
+import { ThemeProvider, createTheme, CssBaseline, Box, Toolbar } from "@mui/material";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavigationDrawer from "./components/NavigationDrawer";
 import Home from "./components/Home";
 import Services from "./components/Services";
@@ -7,34 +8,46 @@ import Portfolio from "./components/Portfolio";
 import ContactUs from "./components/ContactUs";
 import ClientDashboard from "./components/ClientDashboard";
 import AdminDashboard from "./components/AdminDashboard";
-import DarkModeProvider, { DarkModeToggle } from "./components/DarkModeToggle";
-import { Box } from "@mui/material";
 
-const Layout = () => (
-  <>
-    <NavigationDrawer />
-    <DarkModeToggle />
-    <Box component="main" sx={{ marginLeft: 240, padding: 3 }}>
-      <Outlet />
-    </Box>
-  </>
-);
+const theme = createTheme({
+  palette: {
+    primary: { main: "#1976d2" },
+    secondary: { main: "#ff9800" },
+    background: { default: "#f5f5f5" },
+  },
+});
 
 const App = () => (
-  <DarkModeProvider>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="services" element={<Services />} />
-          <Route path="portfolio" element={<Portfolio />} />
-          <Route path="contactus" element={<ContactUs />} />
-          <Route path="clientdashboard" element={<ClientDashboard />} />
-          <Route path="admindashboard" element={<AdminDashboard />} />
-        </Route>
-      </Routes>
+      <Box sx={{ display: "flex" }}>
+        {/* Navigation Drawer */}
+        <NavigationDrawer />
+
+        {/* Main Content */}
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            bgcolor: "background.default",
+            p: 3,
+            marginLeft: "240px", // Matches Drawer width
+          }}
+        >
+          <Toolbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/clientdashboard" element={<ClientDashboard />} />
+            <Route path="/admindashboard" element={<AdminDashboard />} />
+          </Routes>
+        </Box>
+      </Box>
     </Router>
-  </DarkModeProvider>
+  </ThemeProvider>
 );
 
 export default App;

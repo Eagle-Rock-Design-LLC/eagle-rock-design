@@ -1,47 +1,36 @@
 import React, { useState } from "react";
-import { Container, Typography, TextField, Button, List, ListItem, ListItemText } from "@mui/material";
-import { db } from "../firebase/firebaseConfig";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { Container, TextField, Button, Typography, List, ListItem, ListItemText } from "@mui/material";
 
 const AdminDashboard = () => {
-  const [newService, setNewService] = useState("");
+  const [service, setService] = useState("");
   const [services, setServices] = useState<string[]>([]);
 
-  const fetchServices = async () => {
-    const querySnapshot = await getDocs(collection(db, "services"));
-    const data = querySnapshot.docs.map((doc) => doc.data().name);
-    setServices(data);
-  };
-
-  const addService = async () => {
-    await addDoc(collection(db, "services"), { name: newService });
-    setNewService("");
-    fetchServices();
+  const handleAddService = () => {
+    if (service.trim()) {
+      setServices([...services, service]);
+      setService("");
+    }
   };
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Admin Dashboard - Manage Services
+    <Container sx={{ py: 6 }}>
+      <Typography variant="h3" color="primary" textAlign="center" gutterBottom>
+        Admin Dashboard
       </Typography>
       <TextField
         label="Add New Service"
-        value={newService}
-        onChange={(e) => setNewService(e.target.value)}
+        value={service}
+        onChange={(e) => setService(e.target.value)}
         fullWidth
         margin="normal"
       />
-      <Button variant="contained" color="primary" onClick={addService}>
+      <Button variant="contained" color="primary" onClick={handleAddService} sx={{ mb: 2 }}>
         Add Service
       </Button>
-
-      <Typography variant="h6" marginTop={2}>
-        Existing Services:
-      </Typography>
       <List>
-        {services.map((service, index) => (
+        {services.map((s, index) => (
           <ListItem key={index}>
-            <ListItemText primary={service} />
+            <ListItemText primary={s} />
           </ListItem>
         ))}
       </List>
