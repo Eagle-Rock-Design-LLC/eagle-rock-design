@@ -1,37 +1,17 @@
-import React, { createContext, useContext, useState } from "react";
-import { ThemeProvider, createTheme, CssBaseline, Switch, FormControlLabel } from "@mui/material";
+import React from "react";
+import { IconButton } from "@mui/material";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useDarkMode } from "./DarkModeContext";
 
-const DarkModeContext = createContext<any>(null);
-
-export const useDarkMode = () => useContext(DarkModeContext);
-
-const DarkModeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    },
-  });
+const DarkModeToggle = () => {
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
-    </DarkModeContext.Provider>
+    <IconButton onClick={toggleDarkMode} color="inherit">
+      {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+    </IconButton>
   );
 };
 
-export const DarkModeToggle = () => {
-  const { darkMode, setDarkMode } = useDarkMode();
-  return (
-    <FormControlLabel
-      control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />}
-      label="Dark Mode"
-    />
-  );
-};
-
-export default DarkModeProvider;
+export default DarkModeToggle;
