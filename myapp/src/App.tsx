@@ -7,8 +7,10 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Blog from './pages/Blog';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import BlogPost from './pages/BlogPost';
 import DarkModeToggle from './components/DarkModeToggle';
 
 const App = () => {
@@ -39,6 +41,8 @@ const App = () => {
               <Route path="/services" element={<Services />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </Box>
