@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/eagle-rock-design/static/css/main.81b0630a.css",
+    "main.js": "/eagle-rock-design/static/js/main.8fc72e8e.js",
+    "index.html": "/eagle-rock-design/index.html",
+    "main.81b0630a.css.map": "/eagle-rock-design/static/css/main.81b0630a.css.map",
+    "main.8fc72e8e.js.map": "/eagle-rock-design/static/js/main.8fc72e8e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81b0630a.css",
+    "static/js/main.8fc72e8e.js"
+  ]
+}
